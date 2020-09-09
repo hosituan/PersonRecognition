@@ -1,0 +1,28 @@
+PODS:
+  - FaceCropper (1.0.0)
+  - IQKeyboardManagerSwift (6.5.6)
+  - MBProgressHUD (1.2.0)
+  - SkyFloatingLabelTextField (3.8.0)
+
+DEPENDENCIES:
+  - FaceCropper
+  - IQKeyboardManagerSwift
+  - MBProgressHUD (~> 1.2.0)
+  - SkyFloatingLabelTextField (~> 3.0)
+
+SPEC REPOS:
+  trunk:
+    - FaceCropper
+    - IQKeyboardManagerSwift
+    - MBProgressHUD
+    - SkyFloatingLabelTextField
+
+SPEC CHECKSUMS:
+  FaceCropper: 5037221c279db6ae3cea68e76ac4165c85c7c291
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
+
+PODFILE CHECKSUM: 17d9465165236fba3984ef42956d4af427f29027
+
+COCOAPODS: 1.9.3

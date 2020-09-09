@@ -1,0 +1,6 @@
+framework module Pods_PersonRez {
+  umbrella header "Pods-PersonRez-umbrella.h"
+
+  export *
+  module * { export * }
+}
