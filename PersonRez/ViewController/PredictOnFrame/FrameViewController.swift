@@ -167,9 +167,12 @@ extension FrameViewController {
                 }
             }
             
-            
-            let videoDeviceInput = try AVCaptureDeviceInput(device: defaultVideoDevice!)
-            
+            guard let videoDevice = defaultVideoDevice else {
+                showDialog(message: "Not supported in simulator!")
+                return
+            }
+            let videoDeviceInput = try AVCaptureDeviceInput(device: videoDevice)
+           
             if session.canAddInput(videoDeviceInput) {
                 session.addInput(videoDeviceInput)
                 self.videoDeviceInput = videoDeviceInput

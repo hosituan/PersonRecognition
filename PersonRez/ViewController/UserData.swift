@@ -67,6 +67,8 @@ extension UserData: UITableViewDelegate, UITableViewDataSource {
         valueSelected = "user\(indexPath.row)"
 
         if type == "add" {
+            //self.performSegue(withIdentifier: "openRecordVideo", sender: nil)
+            
             let alert = UIAlertController(title: "Add User", message: "Enter name", preferredStyle: .alert)
             alert.addTextField { (textField) in
                 textField.text = ""
@@ -76,14 +78,14 @@ extension UserData: UITableViewDelegate, UITableViewDataSource {
             }))
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [self, weak alert] (_) in
                 let textField = alert?.textFields![0]
-                userNameAdd = textField!.text ?? "Unknown"
+                self.userNameAdd = textField!.text ?? "Unknown"
                 let imagePicker = UIImagePickerController()
                 imagePicker.videoQuality = .typeIFrame1280x720
                 imagePicker.sourceType = .camera
                 imagePicker.mediaTypes = [kUTTypeMovie as String]
                 imagePicker.allowsEditing = true
                 imagePicker.delegate = self
-                present(imagePicker, animated: true, completion: nil)
+                self.present(imagePicker, animated: true, completion: nil)
             }))
             
             self.present(alert, animated: true, completion: nil)

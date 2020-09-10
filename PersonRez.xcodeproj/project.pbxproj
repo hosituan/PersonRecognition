@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		18EF099A30A691019F112813 /* Pods_PersonRez.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F254472F53F19AA7FE21B5B /* Pods_PersonRez.framework */; };
 		FB02792325087AF000412CA4 /* HumanFinal.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FB02792225087AF000412CA4 /* HumanFinal.mlmodel */; };
+		FB1E6F522508DDF20016B86E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1E6F512508DDF20016B86E /* HomeViewController.swift */; };
+		FB3CB346250A134A0048AB8D /* AddNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3CB345250A134A0048AB8D /* AddNameViewController.swift */; };
 		FB57894C24FB8F3100E2A22D /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB57894B24FB8F3100E2A22D /* Helper.swift */; };
 		FB57895024FB908300E2A22D /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB57894F24FB908300E2A22D /* Global.swift */; };
 		FB779DA22500E61400F0F3AE /* ViewFaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB779DA12500E61400F0F3AE /* ViewFaceViewController.swift */; };
@@ -38,6 +40,8 @@
 		3F254472F53F19AA7FE21B5B /* Pods_PersonRez.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PersonRez.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CFB8AF1F08362A8EAD73555 /* Pods-PersonRez.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PersonRez.release.xcconfig"; path = "Target Support Files/Pods-PersonRez/Pods-PersonRez.release.xcconfig"; sourceTree = "<group>"; };
 		FB02792225087AF000412CA4 /* HumanFinal.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = HumanFinal.mlmodel; path = ../../../../Desktop/TrainingData/HumanFinal.mlmodel; sourceTree = "<group>"; };
+		FB1E6F512508DDF20016B86E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		FB3CB345250A134A0048AB8D /* AddNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNameViewController.swift; sourceTree = "<group>"; };
 		FB57894B24FB8F3100E2A22D /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		FB57894F24FB908300E2A22D /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		FB779DA12500E61400F0F3AE /* ViewFaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFaceViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +95,31 @@
 				7CFB8AF1F08362A8EAD73555 /* Pods-PersonRez.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		FB3CB347250A184D0048AB8D /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Unused;
+			sourceTree = "<group>";
+		};
+		FB3CB348250A18580048AB8D /* RecordVideo */ = {
+			isa = PBXGroup;
+			children = (
+				FB9C9CCC2508AF8300178CEB /* VideoView.swift */,
+				FB9C9CCA2508AF3C00178CEB /* RecordVideoViewController.swift */,
+			);
+			path = RecordVideo;
+			sourceTree = "<group>";
+		};
+		FB3CB349250A18810048AB8D /* PredictOnFrame */ = {
+			isa = PBXGroup;
+			children = (
+				FBD82FD6250537FC00B3F88D /* FrameViewController.swift */,
+				FBD82FD2250536D400B3F88D /* PreviewView.swift */,
+			);
+			path = PredictOnFrame;
 			sourceTree = "<group>";
 		};
 		FB57894A24FB8EFC00E2A22D /* Core ML */ = {
@@ -174,10 +203,11 @@
 				FB88AB8324F8E31100DA045E /* TrainViewController.swift */,
 				FB779DA12500E61400F0F3AE /* ViewFaceViewController.swift */,
 				FBC2DCF52504D6CD003D679E /* UserData.swift */,
-				FBD82FD2250536D400B3F88D /* PreviewView.swift */,
-				FBD82FD6250537FC00B3F88D /* FrameViewController.swift */,
-				FB9C9CCA2508AF3C00178CEB /* RecordVideoViewController.swift */,
-				FB9C9CCC2508AF8300178CEB /* VideoView.swift */,
+				FB1E6F512508DDF20016B86E /* HomeViewController.swift */,
+				FB3CB345250A134A0048AB8D /* AddNameViewController.swift */,
+				FB3CB349250A18810048AB8D /* PredictOnFrame */,
+				FB3CB348250A18580048AB8D /* RecordVideo */,
+				FB3CB347250A184D0048AB8D /* Unused */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -298,10 +328,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBD82FD1250525E800B3F88D /* Model.swift in Sources */,
+				FB3CB346250A134A0048AB8D /* AddNameViewController.swift in Sources */,
 				FB9C9CCB2508AF3C00178CEB /* RecordVideoViewController.swift in Sources */,
 				FB02792325087AF000412CA4 /* HumanFinal.mlmodel in Sources */,
 				FB88AB8424F8E31100DA045E /* TrainViewController.swift in Sources */,
 				FB9C9CCF2508C6BF00178CEB /* CustomButton.swift in Sources */,
+				FB1E6F522508DDF20016B86E /* HomeViewController.swift in Sources */,
 				FB57894C24FB8F3100E2A22D /* Helper.swift in Sources */,
 				FBC2DCFB2504DB36003D679E /* DismisKeyboard.swift in Sources */,
 				FBA5891424FB930A00B13D45 /* UIImage+Resize.swift in Sources */,
@@ -464,6 +496,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U9EGC55R6Z;
 				INFOPLIST_FILE = PersonRez/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -483,6 +516,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U9EGC55R6Z;
 				INFOPLIST_FILE = PersonRez/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

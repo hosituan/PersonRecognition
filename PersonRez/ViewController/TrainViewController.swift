@@ -21,12 +21,12 @@ class TrainViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var u1Label: UILabel!
     @IBOutlet weak var imgU2: UIImageView!
     @IBOutlet weak var u2Label: UILabel!
-    private var generator:AVAssetImageGenerator!
+    //private var generator:AVAssetImageGenerator!
     
     
     var modelUrl: URL?
-    var startTime = 0
-    var count = 0
+    //var startTime = 0
+    //var count = 0
     
     
     
@@ -138,32 +138,32 @@ class TrainViewController: UIViewController, UIImagePickerControllerDelegate, UI
             image.face.crop { [self] res in
                 switch res {
                 case .success(let faces):
-                    imgU1.image = faces[0]
-                    imgU1.layer.cornerRadius = 25
+                    self.imgU1.image = faces[0]
+                    self.imgU1.layer.cornerRadius = 25
                     let result = model.predict(image: faces[0].resized(smallestSide: 227)!)
                     let confidence = result.1! * 100
                     print(result)
                     if confidence >= 80 {
-                        u1Label.text = "\(userDict[result.0!]!): \(confidence.rounded() )%"
+                        self.u1Label.text = "\(userDict[result.0!]!): \(confidence.rounded() )%"
                     }
                     else {
-                        u1Label.text = "Unknown"
+                        self.u1Label.text = "Unknown"
                     }
                     
                     if faces.count >= 2 {
-                        imgU2.image = faces[1]
-                        imgU2.layer.cornerRadius = 25
+                        self.imgU2.image = faces[1]
+                        self.imgU2.layer.cornerRadius = 25
                         let result = model.predict(image: faces[1])
                         let confidence = result.1! * 100
                         if confidence >= 90 {
-                            u2Label.text = "\(userDict[result.0!]!): \(confidence)%"
+                            self.u2Label.text = "\(userDict[result.0!]!): \(confidence)%"
                         }
                         else {
-                            u2Label.text = "Unknown"
+                            self.u2Label.text = "Unknown"
                         }
                     }
                 case .notFound:
-                    showDialog(message: "Not found any face!")
+                    self.showDialog(message: "Not found any face!")
                 case .failure(let error):
                     print("Error crop face: \(error)")
                 }

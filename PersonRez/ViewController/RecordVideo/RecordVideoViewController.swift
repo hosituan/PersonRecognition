@@ -11,9 +11,6 @@ import AVFoundation
 
 class RecordVideoViewController: UIViewController, AVCaptureFileOutputRecordingDelegate {
     
-    
-    private var generator:AVAssetImageGenerator!
-    
     @IBOutlet weak var desLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var videoView: VideoView!
@@ -25,6 +22,8 @@ class RecordVideoViewController: UIViewController, AVCaptureFileOutputRecordingD
     
     var timeRecord = 5
     var timer = Timer()
+    
+    var outputVideoUrl: URL?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,17 +48,35 @@ class RecordVideoViewController: UIViewController, AVCaptureFileOutputRecordingD
         }
         
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.captureSession.stopRunning()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "openFillName" {
+            let vc = segue.destination as! AddNameViewController
+            vc.videoURL = outputVideoUrl
+        }
+    }
+    
     @IBAction func startButtonTapped(_ sender: UIButton) {
-        desLabel.text = "Move your head slowly!"
-        startButton.isEnabled = false
-        captureSession.addOutput(movieOutput)
-        let paths = documentDirectory.appendingPathComponent("movie.mov")
-        try? FileManager.default.removeItem(at: paths)
-        movieOutput.startRecording(to: paths, recordingDelegate: self)
-        
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+        if startButton.titleLabel?.text == "Start" {
+            desLabel.text = "Move your head slowly!"
+            startButton.isEnabled = false
+            captureSession.addOutput(movieOutput)
+            let paths = documentDirectory.appendingPathComponent("movie.mov")
+            try? FileManager.default.removeItem(at: paths)
+            movieOutput.startRecording(to: paths, recordingDelegate: self)
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+        }
+        else {
+            self.captureSession.stopRunning()
+            self.performSegue(withIdentifier: "openFillName", sender: nil)
+        }
         
     }
+    
     @objc func timerAction() {
         timeRecord -= 1
         startButton.setTitle("\(timeRecord) seconds remaining!", for: .disabled)
@@ -71,13 +88,7 @@ class RecordVideoViewController: UIViewController, AVCaptureFileOutputRecordingD
             startButton.setTitle("Done", for: .normal)
         }
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.captureSession.stopRunning()
-    }
-    
     func setupLivePreview() {
-        print("go there")
         videoView.layer.cornerRadius = 150
         videoView.layer.masksToBounds = true
         videoView.layer.borderWidth = 1
@@ -99,47 +110,7 @@ class RecordVideoViewController: UIViewController, AVCaptureFileOutputRecordingD
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         print("FINISHED")
         if error == nil {
-            getAllFrames(outputFileURL, for: "user7")
+            outputVideoUrl = outputFileURL
         }
     }
-}
-extension RecordVideoViewController {
-    
-    func getAllFrames(_ videoUrl: URL, for label: String) {
-        let asset:AVAsset = AVAsset(url: videoUrl)
-        let duration:Double = CMTimeGetSeconds(asset.duration)
-        self.generator = AVAssetImageGenerator(asset:asset)
-        self.generator.appliesPreferredTrackTransform = true
-        var i: Double = 0
-        repeat {
-            self.getFrame(fromTime: i, for: label )
-            i = i + 0.1
-        } while (i < duration)
-        
-        self.generator = nil
-    }
-    
-    private func getFrame(fromTime:Double, for label: String) {
-        
-        let time:CMTime = CMTimeMakeWithSeconds(fromTime, preferredTimescale: 60)
-        let image:UIImage
-        do {
-            try image = UIImage(cgImage: self.generator.copyCGImage(at:time, actualTime:nil))
-        } catch {
-            return
-        }
-        image.face.crop { result in
-            switch result {
-            case .success(let faces):
-                for face in faces {
-                    trainingDataset.saveImage(face, for: label)
-                }
-            case .notFound:
-                print("Not found face")
-            case .failure(let error):
-                print("Error crop face: \(error)")
-            }
-        }
-    }
-    
 }
